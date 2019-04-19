@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="396" y="258" name="Users">
+</datatypes><table x="329" y="266" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -64,6 +64,9 @@
 <datatype>varchar</datatype>
 <default>NULL</default></row>
 <row name="password_digest" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
+<row name="login" null="1" autoincrement="0">
 <datatype>varchar</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -97,6 +100,10 @@
 <row name="text" null="1" autoincrement="0">
 <datatype>text</datatype>
 <default>NULL</default></row>
+<row name="category_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Category" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -146,6 +153,21 @@
 <row name="role" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="686" y="448" name="Category">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
