@@ -143,6 +143,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-observers (0.1.5)
+      activemodel (>= 4.0)
     railties (5.2.3)
       actionpack (= 5.2.3)
       activesupport (= 5.2.3)
@@ -234,6 +236,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.2.2, >= 5.2.2.1)
   rails-controller-testing
+  rails-observers
   rename
   rspec-activemodel-mocks
   rspec-collection_matchers

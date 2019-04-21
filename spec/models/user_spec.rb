@@ -5,17 +5,19 @@ RSpec.describe User, type: :model do
 
   it { should have_one(:auth_token).dependent(:destroy) }
 
+  it { should have_many(:headings).dependent(:destroy) }
+
   it { should allow_value('example@tst.com').for(:email) }
 
   it { should validate_presence_of(:email) }
 
-  it { should validate_length_of(:login).is_at_least(3) }
+  it { should validate_length_of(:login).is_at_least(3).is_at_most(15) }
 
   it { should validate_presence_of(:login) }
 
   it { should allow_value('@lewiy').for(:login) }
 
-  it { should validate_length_of(:nickname).is_at_least(3) }
+  it { should validate_length_of(:nickname).is_at_least(3).is_at_most(15) }
 
   it { should allow_value('lewiy').for(:nickname) }
 

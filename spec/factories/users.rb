@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
-    nickname { FFaker::Internet.user_name + '_ARR' }
+    nickname { 'Walar Morgulis' }
 
-    login    { '@' + FFaker::InternetSE.login_user_name }
+    login    { '@' + FFaker::Name.first_name }
 
     email    { FFaker::Internet.email }
 

@@ -5,7 +5,7 @@ RSpec.describe Api::ProfilesController, type: :controller do
 
   let(:value) { user.auth_token.value }
 
-  let(:nickname) { FFaker::Internet.user_name }
+  let(:nickname) { FFaker::Internet.user_name + 'asd' }
 
   let(:login)    { '@' + FFaker::InternetSE.login_user_name }
 

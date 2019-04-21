@@ -3,13 +3,15 @@ class User < ApplicationRecord
 
   has_one :auth_token, dependent: :destroy
 
-  validates :login, length: { minimum: 3 }
+  has_many :headings, dependent: :destroy
+
+  validates :login, length: { in: 3..15 }
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }
 
-  validates :login, format: { with: /\A@{1}[a-zA-Z0-9_-]{3,15}+\z/ }
+  validates :login, format: { with: /\A@{1}[a-zA-Z0-9_-]+\z/ }
 
-  validates :nickname, length: { minimum: 3 }
+  validates :nickname, length: { in: 3..15 }
 
   validates :nickname, format: { with: /\A(([',. -_][a-zA-Zа-яА-Я])?([a-zA-Zа-яА-Я]))+(([',. -_][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*+\z/ }
 
