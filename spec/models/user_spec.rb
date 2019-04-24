@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:headings).dependent(:destroy) }
 
+  it { should have_many(:ads).dependent(:destroy) }
+
   it { should allow_value('example@tst.com').for(:email) }
 
   it { should validate_presence_of(:email) }

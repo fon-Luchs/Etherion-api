@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Heading, type: :model do
   it { should belong_to(:user) }
 
+  it { should have_many(:ads).dependent(:destroy) }
+
   it { should allow_value('Base').for(:name) }
 
   it { should validate_length_of(:name).is_at_least(3).is_at_most(15) }

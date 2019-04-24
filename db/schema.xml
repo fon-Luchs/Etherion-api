@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="329" y="266" name="Users">
+</datatypes><table x="258" y="376" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -69,11 +69,14 @@
 <row name="login" null="1" autoincrement="0">
 <datatype>varchar</datatype>
 <default>NULL</default></row>
+<row name="polit_point" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="748" y="25" name="Conversations">
+<table x="478" y="111" name="Conversations">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -89,7 +92,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="975" y="74" name="Publications">
+<table x="833" y="53" name="Publications">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -108,7 +111,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="406" y="44" name="Messages">
+<table x="191" y="76" name="Messages">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -123,7 +126,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1352" y="189" name="Comments">
+<table x="1129" y="356" name="Comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -142,7 +145,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1062" y="352" name="Subscribers">
+<table x="984" y="525" name="Subscribers">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -157,12 +160,35 @@
 <part>id</part>
 </key>
 </table>
-<table x="686" y="448" name="Category">
+<table x="567" y="558" name="Category">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>varchar</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1417" y="150" name="Likes">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="likeable_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Publications" row="id" />
+<relation table="Comments" row="id" />
+</row>
+<row name="likeable_type" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
+<row name="value" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>

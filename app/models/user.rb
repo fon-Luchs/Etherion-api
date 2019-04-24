@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :headings, dependent: :destroy
 
+  has_many :ads, dependent: :destroy
+
   validates :login, length: { in: 3..15 }
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }

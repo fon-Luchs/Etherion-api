@@ -1,6 +1,8 @@
 class Heading < ApplicationRecord
   belongs_to :user
 
+  has_many :ads, dependent: :destroy
+
   validates :user, presence: true
 
   validates :name, presence: true

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_19_122448) do
+ActiveRecord::Schema.define(version: 2019_04_21_130436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ads", force: :cascade do |t|
+    t.bigint "heading_id"
+    t.bigint "user_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["heading_id"], name: "index_ads_on_heading_id"
+    t.index ["user_id"], name: "index_ads_on_user_id"
+  end
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string "value"
@@ -41,5 +51,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_122448) do
     t.index ["login"], name: "index_users_on_login"
   end
 
+  add_foreign_key "ads", "headings"
+  add_foreign_key "ads", "users"
   add_foreign_key "headings", "users"
 end

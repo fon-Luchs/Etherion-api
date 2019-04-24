@@ -1,22 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe HeadingDecorator do
+RSpec.describe AdDecorator do
   describe 'profile#as_json' do
     let(:user) { create(:user) }
 
     let(:heading) { create(:heading, user: user, name: 'commune') }
 
-    before { create_list(:ad, 28, user: user, heading: heading) }
+    let(:ad) { create(:ad, heading: heading, user: user) }
 
-    subject { heading.decorate.as_json }
+    subject { ad.decorate.as_json }
 
-    its([:id])     { should eq heading.id }
+    its([:id]) { should eq ad.id }
 
-    its([:name])   { should eq 'commune' }
+    its([:text]) { should eq ad.text }
 
     its([:author]) { should eq author }
-
-    its([:ads])    { should eq heading.ads.decorate.as_json }
   end
 
   def author

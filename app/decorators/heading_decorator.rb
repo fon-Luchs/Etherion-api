@@ -5,13 +5,13 @@ class HeadingDecorator < ApplicationDecorator
 
   def as_json(*args)
     {
-      author: {
-        id: user.id,
-        nickname: user.nickname
-      },
+        author: {
+          id: user.id,
+          nickname: user.nickname
+        },
       id: object.id,
       name: object.name,
-      ads: []
+      ads: object.ads.decorate.as_json
     }
   end
 end
