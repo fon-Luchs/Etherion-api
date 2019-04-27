@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AdDecorator do
   describe 'profile#as_json' do
-    let(:user) { create(:user) }
+    let(:user)    { create(:user) }
 
     let(:heading) { create(:heading, user: user, name: 'commune') }
 
@@ -10,15 +10,15 @@ RSpec.describe AdDecorator do
 
     let!(:comments) { create_list(:comment, 1, user: user, ad: ad) }
 
-    subject { ad.decorate.as_json }
+    subject    { ad.decorate.as_json }
 
     its([:id]) { should eq ad.id }
 
-    its([:text]) { should eq ad.text }
+    its([:text])      { should eq ad.text }
 
-    its([:author]) { should eq author }
+    its([:author])    { should eq author }
 
-    its([:comments]) { should eq comment }
+    its([:comments])  { should eq comment }
   end
 
   def comment
@@ -28,7 +28,8 @@ RSpec.describe AdDecorator do
         author: author,
         id: comments.first.id,
         parent_id: comments.first.parent_id,
-        text: comments.first.text
+        text: comments.first.text,
+        answers: []
       }
     ]
   end

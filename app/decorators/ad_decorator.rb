@@ -17,7 +17,7 @@ class AdDecorator < ApplicationDecorator
       },
       id: object.id,
       text: object.text,
-      comments: comments.as_json
+      comments: comments.where(parent_id: 0).as_json
     }
   end
 end

@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
         resources :ads, except: :index do
 
-          resources :comments, only: [:show, :create]
+          resources :comments, only: [:show, :create] do
+
+            resources :answers, only: :create
+
+          end
 
         end
 
@@ -22,7 +26,11 @@ Rails.application.routes.draw do
 
         resources :ads, only: :show do
 
-          resources :comments, only: [:show, :create]
+          resources :comments, only: [:show, :create] do
+
+            resources :answers, only: :create
+
+          end
 
         end
 

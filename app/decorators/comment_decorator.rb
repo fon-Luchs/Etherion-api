@@ -15,7 +15,12 @@ class CommentDecorator < ApplicationDecorator
       },
       id: object.id,
       text: object.text,
-      parent_id: object.parent_id
+      parent_id: object.parent_id,
+      answers: answers.as_json
     }
+  end
+
+  def answers
+    ad.comments.where(parent_id: object.id)
   end
 end

@@ -4,16 +4,10 @@ class Api::CommentsController < BaseController
   private
 
   def build_resource
-    @ad = Ad.find(params[:ad_id])
-
-    @comment = current_user.comments.new(resource_params.merge(ad: @ad))
+    @comment = Comment::CommentBuilder.new(current_user: current_user, params: params).build
   end
 
   def resource
     @comment ||= current_user.comments.find(params[:id])
-  end
-
-  def resource_params
-    params.require(:comment).permit(:text)
   end
 end

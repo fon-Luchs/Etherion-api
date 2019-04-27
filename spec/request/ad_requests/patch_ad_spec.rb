@@ -17,13 +17,23 @@ RSpec.describe 'PatchAd', type: :request do
 
   let!(:comment){ create(:comment, ad: ad, user: user) }
 
+  let!(:answer) { create(:comment, ad: ad, user: user, parent_id: comment.id) }
+
   let(:comment_response) do
     {
       'ad' => { 'id' => ad.id },
       'author' => author,
       'id' => comment.id,
       'parent_id' => comment.parent_id,
-      'text' => comment.text
+      'text' => comment.text,
+      'answers' => [{
+        'ad' => { 'id' => ad.id },
+        'author' => author,
+        'id' => answer.id,
+        'parent_id' => answer.parent_id,
+        'text' => answer.text,
+        'answers' => []
+      }]
     }
   end
 

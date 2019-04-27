@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'PostProfileAdComment', type: :request do
-  let(:user)            { create(:user, :with_auth_token)}
+RSpec.describe 'PostUserAdComment', type: :request do
+  let(:user)            { create(:user, :with_auth_token, id: 1)}
 
   let(:heading)         { create(:heading, user: user, id: 1) }
 
@@ -23,7 +23,8 @@ RSpec.describe 'PostProfileAdComment', type: :request do
       'author' => author,
       'id' => comment.id,
       'parent_id' => comment.parent_id,
-      'text' => comment.text
+      'text' => comment.text,
+      'answers' => []
     }
   end
 
@@ -32,7 +33,7 @@ RSpec.describe 'PostProfileAdComment', type: :request do
   let(:comment) { Comment.last }
 
   context do
-    before { post '/api/profile/headings/1/ads/1/comments', params: params.to_json , headers: headers }
+    before { post '/api/users/1/headings/1/ads/1/comments', params: params.to_json , headers: headers }
 
     it('returns notes') { expect(JSON.parse(response.body)).to eq resource_response }
 
@@ -42,15 +43,15 @@ RSpec.describe 'PostProfileAdComment', type: :request do
   context 'Unauthorized' do
     let(:value) { SecureRandom.uuid }
 
-    before { post '/api/profile/headings/1/ads/1/comments', params: params.to_json , headers: headers }
+    before { post '/api/users/1/headings/1/ads/1/comments', params: params.to_json , headers: headers }
 
     it('returns HTTP Status Code 401') { expect(response).to have_http_status :unauthorized }
   end
 
   context 'invalid params' do
-    let(:params) { { comment: {}, heading_id: heading.id, ad_id: ad.id } }
+    let(:params) { { comment: {}, user_id: user.id, heading_id: heading.id, ad_id: ad.id } }
 
-    before { post '/api/profile/headings/1/ads/1/comments', params: params.to_json, headers: headers }
+    before { post '/api/users/1/headings/1/ads/1/comments', params: params.to_json, headers: headers }
 
     it('returns HTTP Status Code 422') { expect(response).to have_http_status 422 }
   end

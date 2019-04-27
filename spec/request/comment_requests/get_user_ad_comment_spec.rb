@@ -21,7 +21,8 @@ RSpec.describe 'GetUserAdComment', type: :request do
       'author' => author,
       'id' => comment.id,
       'parent_id' => comment.parent_id,
-      'text' => comment.text
+      'text' => comment.text,
+      'answers' => []
     }
   end
 

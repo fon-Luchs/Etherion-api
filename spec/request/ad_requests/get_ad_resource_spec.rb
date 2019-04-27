@@ -13,7 +13,9 @@ RSpec.describe 'GetAdResource', type: :request do
 
   let(:author)  { { 'id' => user.id, 'nickname' => user.nickname } }
 
-  let!(:comment) { create(:comment, user: user, ad: ad) }
+  let!(:comment) { create(:comment, user: user, ad: ad, id: 1) }
+
+  let!(:answer)  { create(:comment, user: user, ad: ad, parent_id: comment.id) }
 
   let(:comment_response) do
     {
@@ -21,7 +23,15 @@ RSpec.describe 'GetAdResource', type: :request do
       'author' => author,
       'id' => comment.id,
       'parent_id' => comment.parent_id,
-      'text' => comment.text
+      'text' => comment.text,
+      'answers' => [{
+        'ad' => { 'id' => ad.id },
+        'author' => author,
+        'id' => answer.id,
+        'parent_id' => answer.parent_id,
+        'text' => answer.text,
+        'answers' => []
+      }]
     }
   end
 

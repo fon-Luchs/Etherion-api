@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'GetHeadingResource', type: :request do
-  let(:user) { create(:user, :with_auth_token)}
+  let(:user)      { create(:user, :with_auth_token)}
 
-  let!(:heading) { create(:heading, user: user, id: 1, name: 'вестовая') }
+  let!(:heading)  { create(:heading, user: user, id: 1, name: 'вестовая') }
 
-  let(:value) { user.auth_token.value }
+  let(:value)     { user.auth_token.value }
 
-  let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
+  let(:headers)   { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
-  let(:author) { { 'id' => user.id, 'nickname' => user.nickname } }
+  let(:author)    { { 'id' => user.id, 'nickname' => user.nickname } }
 
   let(:resource_response) do
     {
