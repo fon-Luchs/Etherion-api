@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="258" y="376" name="Users">
+</datatypes><table x="274" y="387" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -76,7 +76,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="478" y="111" name="Conversations">
+<table x="617" y="20" name="Conversations">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -92,7 +92,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="833" y="53" name="Publications">
+<table x="808" y="98" name="Publications">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -111,7 +111,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="191" y="76" name="Messages">
+<table x="221" y="40" name="Messages">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -126,7 +126,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1129" y="356" name="Comments">
+<table x="1208" y="467" name="Comments">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -141,11 +141,14 @@
 <row name="text" null="1" autoincrement="0">
 <datatype>varchar</datatype>
 <default>NULL</default></row>
+<row name="parent_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="984" y="525" name="Subscribers">
+<table x="40" y="366" name="Subscribers">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -160,7 +163,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="567" y="558" name="Category">
+<table x="527" y="575" name="Category">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -175,7 +178,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1417" y="150" name="Likes">
+<table x="1528" y="202" name="Likes">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>

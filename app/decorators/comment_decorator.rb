@@ -1,15 +1,13 @@
-class AdDecorator < ApplicationDecorator
+class CommentDecorator < ApplicationDecorator
   delegate_all
 
   decorates_associations :user
-  decorates_associations :heading
-  decorates_associations :comments
+  decorates_associations :ad
 
   def as_json(*args)
     {
-      heading: {
-        id: heading.id,
-        name: heading.name
+      ad: {
+        id: ad.id
       },
       author: {
         id: user.id,
@@ -17,7 +15,7 @@ class AdDecorator < ApplicationDecorator
       },
       id: object.id,
       text: object.text,
-      comments: comments.as_json
+      parent_id: object.parent_id
     }
   end
 end

@@ -8,6 +8,8 @@ RSpec.describe AdDecorator do
 
     let(:ad) { create(:ad, heading: heading, user: user) }
 
+    let!(:comments) { create_list(:comment, 1, user: user, ad: ad) }
+
     subject { ad.decorate.as_json }
 
     its([:id]) { should eq ad.id }
@@ -15,6 +17,20 @@ RSpec.describe AdDecorator do
     its([:text]) { should eq ad.text }
 
     its([:author]) { should eq author }
+
+    its([:comments]) { should eq comment }
+  end
+
+  def comment
+    [
+      {
+        ad: { id: ad.id },
+        author: author,
+        id: comments.first.id,
+        parent_id: comments.first.parent_id,
+        text: comments.first.text
+      }
+    ]
   end
 
   def author

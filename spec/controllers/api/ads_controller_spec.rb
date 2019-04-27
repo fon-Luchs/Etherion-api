@@ -15,7 +15,7 @@ RSpec.describe Api::AdsController, type: :controller do
 
   let(:user) { create(:user, :with_auth_token) }
 
-  let(:heading) { create(:heading, user: user) }
+  let(:heading) { create(:heading, user: user, name: 'Анегдотный') }
 
   let(:value) { user.auth_token.value }
 

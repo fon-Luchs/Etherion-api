@@ -15,11 +15,25 @@ RSpec.describe 'PatchAd', type: :request do
 
   let(:author)  { { 'id' => user.id, 'nickname' => user.nickname } }
 
+  let!(:comment){ create(:comment, ad: ad, user: user) }
+
+  let(:comment_response) do
+    {
+      'ad' => { 'id' => ad.id },
+      'author' => author,
+      'id' => comment.id,
+      'parent_id' => comment.parent_id,
+      'text' => comment.text
+    }
+  end
+
   let(:resource_response) do
     {
       'id' => ad.id,
+      'author' => author,
       'text' => Ad.last.text,
-      'author' => author
+      'heading' => { 'id' => heading.id, 'name' => heading.name },
+      'comments' => [comment_response]
     }
   end
 

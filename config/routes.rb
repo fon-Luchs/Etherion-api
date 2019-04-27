@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
       resources :headings, only: [:create, :destroy, :update, :show] do
 
-        resources :ads, except: :index
+        resources :ads, except: :index do
+
+          resources :comments, only: [:show, :create]
+
+        end
 
       end
 
@@ -16,7 +20,11 @@ Rails.application.routes.draw do
 
       resources :headings, only: :show do
 
-        resources :ads, only: :show
+        resources :ads, only: :show do
+
+          resources :comments, only: [:show, :create]
+
+        end
 
       end
 
