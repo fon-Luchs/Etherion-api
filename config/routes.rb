@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
           resources :comments, only: [:show, :create] do
 
+            resource :like, only: :create
+
             resources :answers, only: :create
 
           end
@@ -26,7 +28,11 @@ Rails.application.routes.draw do
 
         resources :ads, only: :show do
 
+          resource :like, only: :create
+
           resources :comments, only: [:show, :create] do
+
+            resource :like, only: :create
 
             resources :answers, only: :create
 

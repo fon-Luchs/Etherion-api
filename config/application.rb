@@ -27,7 +27,7 @@ module Etherion
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.active_record.observers = :user_observer
+    config.active_record.observers = [:user_observer, :like_observer]
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

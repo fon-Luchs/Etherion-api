@@ -92,7 +92,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="808" y="98" name="Publications">
+<table x="908" y="120" name="Ads">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -105,7 +105,7 @@
 <default>NULL</default></row>
 <row name="category_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Category" row="id" />
+<default>NULL</default><relation table="Headings" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -136,7 +136,7 @@
 </row>
 <row name="publication_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Publications" row="id" />
+<default>NULL</default><relation table="Ads" row="id" />
 </row>
 <row name="text" null="1" autoincrement="0">
 <datatype>varchar</datatype>
@@ -163,7 +163,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="527" y="575" name="Category">
+<table x="527" y="575" name="Headings">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -178,13 +178,13 @@
 <part>id</part>
 </key>
 </table>
-<table x="1528" y="202" name="Likes">
+<table x="1507" y="146" name="Likes">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="likeable_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Publications" row="id" />
+<default>NULL</default><relation table="Ads" row="id" />
 <relation table="Comments" row="id" />
 </row>
 <row name="likeable_type" null="1" autoincrement="0">

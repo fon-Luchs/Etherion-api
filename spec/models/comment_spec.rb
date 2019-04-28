@@ -5,6 +5,8 @@ RSpec.describe Comment, type: :model do
 
   it { should belong_to(:ad) }
 
+  it { should have_many(:likes).dependent(:destroy) }
+
   it { should validate_presence_of(:user) }
 
   it { should validate_presence_of(:text) }

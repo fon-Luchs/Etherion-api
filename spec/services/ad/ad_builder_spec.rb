@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ad::AdBuilder do
-  let(:params)  { { ad: { text: 'Paradigma' }, heading_id: heading.id } }
+  let(:params)         { { ad: { text: 'Paradigma' }, heading_id: heading.id } }
 
   let(:request_params) { ActionController::Parameters.new(params) }
 

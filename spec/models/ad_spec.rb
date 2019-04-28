@@ -5,6 +5,8 @@ RSpec.describe Ad, type: :model do
 
   it { should belong_to(:heading) }
 
+  it { should have_many(:likes).dependent(:destroy) }
+
   it { should have_many(:comments) }
 
   it { should validate_presence_of(:user) }

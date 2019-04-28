@@ -9,6 +9,8 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:ads).dependent(:destroy) }
 
+  it { should have_many(:likes).dependent(:destroy) }
+
   it { should have_many(:comments) }
 
   it { should allow_value('example@tst.com').for(:email) }

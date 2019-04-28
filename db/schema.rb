@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_105909) do
+ActiveRecord::Schema.define(version: 2019_04_28_101621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_105909) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rate", default: 0
     t.index ["heading_id"], name: "index_ads_on_heading_id"
     t.index ["user_id"], name: "index_ads_on_user_id"
   end
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_105909) do
     t.integer "parent_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rate", default: 0
     t.index ["ad_id"], name: "index_comments_on_ad_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -52,6 +54,18 @@ ActiveRecord::Schema.define(version: 2019_04_26_105909) do
     t.index ["user_id"], name: "index_headings_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "likeable_type"
+    t.bigint "likeable_id"
+    t.integer "kind", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "login", null: false
@@ -60,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_105909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password"
+    t.integer "polit_power", default: 0
     t.index ["login"], name: "index_users_on_login"
   end
 
@@ -68,4 +83,5 @@ ActiveRecord::Schema.define(version: 2019_04_26_105909) do
   add_foreign_key "comments", "ads"
   add_foreign_key "comments", "users"
   add_foreign_key "headings", "users"
+  add_foreign_key "likes", "users"
 end
