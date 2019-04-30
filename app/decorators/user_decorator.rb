@@ -8,12 +8,11 @@ class UserDecorator < Draper::Decorator
         email: object.email,
         nickname: object.nickname,
         login: object.login,
-        ads: [],
-        readers: [],
-        readables: [],
-        letters: [],
+        headings: object.headings.decorate.as_json,
+        subscribers: object.subscribers.decorate(context: { subscriber_index: true }).as_json,
+        subscribings: object.subscribings.decorate(context: { subscribing_index: true }).as_json,
         commune: '',
-        polit_rate: 0
+        polit_power: object.polit_power,
       }
 
     elsif context[:user_show]
@@ -22,9 +21,8 @@ class UserDecorator < Draper::Decorator
         email: object.email,
         nickname: object.nickname,
         login: object.login,
-        ads: [],
-        readers: [],
-        readables: [],
+        headings: object.headings.decorate.as_json,
+        subscribers: object.subscribers.decorate(context: { subscriber_index: true }).as_json,
         commune: ''
       }
 

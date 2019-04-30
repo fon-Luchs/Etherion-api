@@ -12,23 +12,21 @@ RSpec.describe UserDecorator do
 
     subject { profile.decorate(context: {profile: true}).as_json }
 
-    its([:nickname])   { should eq 'Остап Вишня' }
+    its([:nickname])     { should eq 'Остап Вишня' }
 
-    its([:email])      { should eq 'otap123@oda.com.ua' }
+    its([:email])        { should eq 'otap123@oda.com.ua' }
 
-    its([:login])      { should eq '@osavul' }
+    its([:login])        { should eq '@osavul' }
 
-    its([:ads])        { should eq [] }
+    its([:headings])     { should eq profile.headings.decorate.as_json }
 
-    its([:readers])    { should eq [] }
+    its([:subscribers])  { should eq profile.subscribers.decorate(context: { subscriber_index: true }).as_json }
 
-    its([:readables])  { should eq [] }
+    its([:subscribings]) { should eq profile.subscribings.decorate(context: { subscribing_index: true }).as_json }
 
-    its([:letters])    { should eq [] }
+    its([:commune])      { should eq '' }
 
-    its([:commune])    { should eq '' }
-
-    its([:polit_rate]) { should eq 0 }
+    its([:polit_power])  { should eq profile.polit_power }
   end
 
   describe 'users#as_json' do
@@ -43,23 +41,21 @@ RSpec.describe UserDecorator do
     context '#show.json' do
       subject { user.decorate(context: {user_show: true}).as_json }
 
-      its([:nickname])   { should eq 'Остап Вишня' }
+      its([:nickname])     { should eq 'Остап Вишня' }
 
-      its([:email])      { should eq 'otap123@oda.com.ua' }
+      its([:email])        { should eq 'otap123@oda.com.ua' }
 
-      its([:login])      { should eq '@osavul' }
+      its([:login])        { should eq '@osavul' }
 
-      its([:ads])        { should eq [] }
+      its([:headings])     { should eq user.headings.decorate.as_json }
 
-      its([:readers])    { should eq [] }
+      its([:subscribers])  { should eq user.subscribers.decorate(context: { subscriber_index: true }).as_json }
 
-      its([:readables])  { should eq [] }
-
-      its([:commune])    { should eq '' }
+      its([:commune])      { should eq '' }
     end
 
     context '#index.json' do
-      subject { user.decorate(context: {user_index: true}).as_json }
+      subject { user.decorate(context: { user_index: true }).as_json }
 
       its([:nickname]) { should eq 'Остап Вишня' }
     end

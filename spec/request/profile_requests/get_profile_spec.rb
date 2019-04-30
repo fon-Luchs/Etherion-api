@@ -7,18 +7,29 @@ RSpec.describe 'GetProfile', type: :request do
 
   let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
+  let(:heading) do
+    [
+      'ads' => [],
+      'author' => {
+        'id' => user.id,
+        'nickname' => user.nickname
+      },
+      'id' => user.headings.first.id,
+      'name' => user.headings.first.name
+    ]
+  end
+
   let(:profile_response) do
     {
       "id" => user.id,
       "nickname" => user.nickname,
       "login" => user.login,
       "email" => user.email,
-      "ads" => [],
-      "readers" => [],
-      "readables" => [],
-      "commune" => '',
-      "letters" => [],
-      "polit_rate" => 0
+      'headings' => heading,
+      'commune' => '',
+      'polit_power' => user.polit_power,
+      'subscribers' => [],
+      'subscribings' => []
     }
   end
 

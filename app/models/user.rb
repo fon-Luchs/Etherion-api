@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  has_many :subscribers, foreign_key: :subscriber_id, class_name: 'Subscriber', dependent: :destroy
+
+  has_many :subscribings, foreign_key: :subscribing_id, class_name: 'Subscriber', dependent: :destroy
+
   validates :login, length: { in: 3..15 }
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }

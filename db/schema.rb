@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_101621) do
+ActiveRecord::Schema.define(version: 2019_04_28_174009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2019_04_28_101621) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.bigint "subscriber_id"
+    t.bigint "subscribing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscriber_id", "subscribing_id"], name: "index_subscribers_on_subscriber_id_and_subscribing_id", unique: true
+    t.index ["subscriber_id"], name: "index_subscribers_on_subscriber_id"
+    t.index ["subscribing_id"], name: "index_subscribers_on_subscribing_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "login", null: false
@@ -84,4 +94,6 @@ ActiveRecord::Schema.define(version: 2019_04_28_101621) do
   add_foreign_key "comments", "users"
   add_foreign_key "headings", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "subscribers", "users", column: "subscriber_id"
+  add_foreign_key "subscribers", "users", column: "subscribing_id"
 end

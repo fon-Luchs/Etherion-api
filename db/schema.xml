@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="274" y="387" name="Users">
+</datatypes><table x="309" y="326" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -148,17 +148,18 @@
 <part>id</part>
 </key>
 </table>
-<table x="40" y="366" name="Subscribers">
+<table x="28" y="222" name="Subscribers">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
+<row name="subscriber_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
 <default>NULL</default><relation table="Users" row="id" />
 </row>
-<row name="role" null="1" autoincrement="0">
+<row name="subscribing_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

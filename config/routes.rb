@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
     resource :profile, only: [:create, :destroy, :update, :show] do
 
+      resources :subscribers, only: :index
+
+      resources :subscribings, only: :index
+
       resources :headings, only: [:create, :destroy, :update, :show] do
 
         resources :ads, except: :index do
@@ -23,6 +27,10 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:show, :index] do
+
+      resources :subscribings, only: :create
+
+      resources :subscribers, only: :index
 
       resources :headings, only: :show do
 

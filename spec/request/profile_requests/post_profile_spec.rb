@@ -8,18 +8,29 @@ RSpec.describe 'PostProfile', type: :request do
 
   let(:resource_params) { attributes_for(:user) }
 
+  let(:heading) do
+    [
+      'ads' => [],
+      'author' => {
+        'id' => user.id,
+        'nickname' => user.nickname
+      },
+      'id' => user.headings.first.id,
+      'name' => user.headings.first.name
+    ]
+  end
+
   let(:resource_response) do
     {
       "id" => user.id,
       "nickname" => user.nickname,
       "login" => user.login,
       "email" => user.email,
-      "ads" => [],
-      "readers" => [],
-      "readables" => [],
-      "commune" => '',
-      "letters" => [],
-      "polit_rate" => 0
+      'headings' => heading,
+      'commune' => '',
+      'polit_power' => user.polit_power,
+      'subscribers' => [],
+      'subscribings' => []
     }
   end
 

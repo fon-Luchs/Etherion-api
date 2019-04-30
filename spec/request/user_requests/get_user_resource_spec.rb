@@ -7,16 +7,27 @@ RSpec.describe 'GetUserResource', type: :request do
 
   let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
+  let(:heading) do
+    [
+      'ads' => [],
+      'author' => {
+        'id' => user.id,
+        'nickname' => user.nickname
+      },
+      'id' => user.headings.first.id,
+      'name' => user.headings.first.name
+    ]
+  end
+
   let(:user_response) do
     {
       "id" => user.id,
       "nickname" => user.nickname,
       "login" => user.login,
       "email" => user.email,
-      "ads" => [],
-      "readers" => [],
-      "readables" => [],
-      "commune" => ''
+      "commune" => '',
+      'headings' => heading,
+      'subscribers' => []
     }
   end
 

@@ -10,19 +10,29 @@ RSpec.describe 'PutProfile', type: :request do
   let(:params) { { user: resource_params } }
 
   let(:resource_params) { attributes_for(:user) }
+  let(:heading) do
+    [
+      'ads' => [],
+      'author' => {
+        'id' => user.id,
+        'nickname' => user.nickname
+      },
+      'id' => user.headings.first.id,
+      'name' => user.headings.first.name
+    ]
+  end
 
   let(:profile_response) do
     {
       "id" => user.id,
-      "nickname" => User.last.nickname,
+      "nickname" => user.nickname,
       "login" => User.last.login,
       "email" => User.last.email,
-      "ads" => [],
-      "readers" => [],
-      "readables" => [],
-      "commune" => '',
-      "letters" => [],
-      "polit_rate" => 0
+      'headings' => heading,
+      'commune' => '',
+      'polit_power' => user.polit_power,
+      'subscribers' => [],
+      'subscribings' => []
     }
   end
 
