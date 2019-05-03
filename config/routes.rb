@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
     resource :profile, only: [:create, :destroy, :update, :show] do
 
+      resources :communes, only: [:create, :destroy, :update, :show]
+
       resources :subscribers, only: :index
 
       resources :subscribings, only: :index
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:show, :index] do
+
+      resources :communes, only: :show
 
       resources :subscribings, only: :create
 

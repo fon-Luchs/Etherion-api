@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Heading::HeadingBuilder do
+RSpec.describe Comment::CommentBuilder do
   let(:params)         { { comment: { text: 'Paradigma' }, ad_id: ad.id } }
 
   let(:request_params) { ActionController::Parameters.new(params) }

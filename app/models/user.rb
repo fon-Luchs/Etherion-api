@@ -3,6 +3,12 @@ class User < ApplicationRecord
 
   has_one :auth_token, dependent: :destroy
 
+  has_one :commune, foreign_key: :creator_id, dependent: :destroy
+
+  has_one :commune_user, dependent: :destroy
+
+  has_one :active_commune, through: :commune_user, source: :commune
+
   has_many :headings, dependent: :destroy
 
   has_many :ads, dependent: :destroy

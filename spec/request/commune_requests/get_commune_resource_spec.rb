@@ -1,27 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe 'GetHeadingResource', type: :request do
+RSpec.describe 'GetCommuneResource', type: :request do
   let(:user)     { create(:user, :with_auth_token, id: 1)}
-
-  let!(:heading) { create(:heading, user: user, id: 1, name: 'вестовая') }
 
   let(:value)    { user.auth_token.value }
 
   let(:headers)  { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
+  let!(:commune) { create(:commune, creator: user, id: 1) }
+
   let(:author)   { { 'id' => user.id, 'nickname' => user.nickname } }
 
   let(:resource_response) do
     {
-      'id' => heading.id,
-      'name' => heading.name,
+      'id' => commune.id,
+      'name' => commune.name,
       'author' => author,
-      'ads' => []
+      'chats' => [],
+      'users' => [author]
     }
   end
 
   context do
-    before { get '/api/users/1/headings/1', params: {} , headers: headers }
+    before { get '/api/profile/communes/1', params: {} , headers: headers }
 
     it('returns record') { expect(JSON.parse(response.body)).to eq resource_response }
 
@@ -31,19 +32,13 @@ RSpec.describe 'GetHeadingResource', type: :request do
   context 'Unauthorized' do
     let(:value) { SecureRandom.uuid }
 
-    before { get '/api/users/1/headings/1', params: {} , headers: headers }
+    before { get '/api/profile/communes/1', params: {} , headers: headers }
 
     it('returns HTTP Status Code 401') { expect(response).to have_http_status :unauthorized }
   end
 
   context 'Record was not found' do
-    before { get '/api/users/1/headings/0', params: {} , headers: headers }
-
-    it('returns HTTP Status Code 404') { expect(response).to have_http_status 404 }
-  end
-
-  context 'Record was not found' do
-    before { get '/api/users/0/headings/1', params: {} , headers: headers }
+    before { get '/api/profile/communes/0', params: {} , headers: headers }
 
     it('returns HTTP Status Code 404') { expect(response).to have_http_status 404 }
   end

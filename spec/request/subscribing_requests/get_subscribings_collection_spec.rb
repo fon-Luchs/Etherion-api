@@ -25,7 +25,7 @@ RSpec.describe 'GetSubscribingsCollection', type: :request do
   context do
     before { get '/api/profile/subscribings', params: {}, headers: headers }
 
-    it('returns collection of users') { expect(JSON.parse(response.body)).to eq subscribing_collection }
+    it('returns collection of subscribing') { expect(JSON.parse(response.body)).to eq subscribing_collection }
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
   end

@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="309" y="326" name="Users">
+</datatypes><table x="311" y="332" name="Users">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -164,7 +164,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="527" y="575" name="Headings">
+<table x="743" y="512" name="Headings">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -198,6 +198,96 @@
 <datatype>tinyint</datatype>
 <default>NULL</default><relation table="Users" row="id" />
 </row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="85" y="537" name="Communes">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="creator_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
+<row name="polit_bank" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="149" y="743" name="commune_users">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="commune_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Communes" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="859" y="704" name="Chanel">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="commune_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Communes" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1476" y="671" name="chanel_users">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="chanel_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Chanel" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="500" y="735" name="Roles">
+<row name="id" null="1" autoincrement="1">
+<datatype>tinyint</datatype>
+<default>NULL</default></row>
+<row name="roleable_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Communes" row="id" />
+<relation table="Chanel" row="id" />
+<relation table="Chanel" row="id" />
+</row>
+<row name="roleable_type" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default><relation table="Communes" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Users" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

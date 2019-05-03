@@ -5,6 +5,12 @@ RSpec.describe User, type: :model do
 
   it { should have_one(:auth_token).dependent(:destroy) }
 
+  it { should have_one(:commune).dependent(:destroy) }
+
+  it { should have_one(:commune_user) }
+
+  it { should have_one(:active_commune) }
+
   it { should have_many(:headings).dependent(:destroy) }
 
   it { should have_many(:ads).dependent(:destroy) }

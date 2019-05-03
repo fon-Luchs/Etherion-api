@@ -23,7 +23,7 @@ RSpec.describe 'GetHeadingResource', type: :request do
   context do
     before { get '/api/profile/headings/1', params: {} , headers: headers }
 
-    it('returns profile') { expect(JSON.parse(response.body)).to eq resource_response }
+    it('returns record') { expect(JSON.parse(response.body)).to eq resource_response }
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
   end

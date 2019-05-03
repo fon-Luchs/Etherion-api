@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'PostHeading', type: :request do
+RSpec.describe 'PostCommune', type: :request do
   let(:user)   { create(:user, :with_auth_token)}
 
   let(:value)  { user.auth_token.value }
 
-  let(:params) { { heading: { name: 'loller', user: user } } }
+  let(:params) { { commune: { name: 'loller', creator: user } } }
 
-  let(:resource_params) { attributes_for(:heading) }
+  let(:resource_params) { attributes_for(:commune) }
 
   let(:headers)         { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
@@ -15,19 +15,20 @@ RSpec.describe 'PostHeading', type: :request do
 
   let(:resource_response) do
     {
-      'id' => heading.id,
-      'name' => heading.name,
+      'id' => commune.id,
+      'name' => commune.name,
       'author' => author,
-      'ads' => []
+      'chats' => [],
+      'users' => [author]
     }
   end
 
-  before { build(:heading, resource_params) }
+  before { build(:commune, resource_params) }
 
-  let(:heading) { Heading.last }
+  let(:commune) { Commune.last }
 
   context do
-    before { post '/api/profile/headings', params: params.to_json , headers: headers }
+    before { post '/api/profile/communes', params: params.to_json , headers: headers }
 
     it('returns record') { expect(JSON.parse(response.body)).to eq resource_response }
 
@@ -37,13 +38,13 @@ RSpec.describe 'PostHeading', type: :request do
   context 'Unauthorized' do
     let(:value) { SecureRandom.uuid }
 
-    before { post '/api/profile/headings', params: params.to_json , headers: headers }
+    before { post '/api/profile/communes', params: params.to_json , headers: headers }
 
     it('returns HTTP Status Code 401') { expect(response).to have_http_status :unauthorized }
   end
 
   context 'invalid params' do
-    before { post '/api/profile/headings', params: {} , headers: headers }
+    before { post '/api/profile/communes', params: {} , headers: headers }
 
     it('returns HTTP Status Code 422') { expect(response).to have_http_status 422 }
   end

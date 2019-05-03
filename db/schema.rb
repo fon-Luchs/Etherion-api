@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_174009) do
+ActiveRecord::Schema.define(version: 2019_05_02_164220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(version: 2019_04_28_174009) do
     t.index ["ad_id"], name: "index_comments_on_ad_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "commune_users", force: :cascade do |t|
+    t.bigint "commune_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commune_id"], name: "index_commune_users_on_commune_id"
+    t.index ["user_id"], name: "index_commune_users_on_user_id"
+  end
+
+  create_table "communes", force: :cascade do |t|
+    t.string "name"
+    t.integer "polit_bank"
+    t.bigint "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_communes_on_creator_id"
   end
 
   create_table "headings", force: :cascade do |t|
@@ -92,6 +110,9 @@ ActiveRecord::Schema.define(version: 2019_04_28_174009) do
   add_foreign_key "ads", "users"
   add_foreign_key "comments", "ads"
   add_foreign_key "comments", "users"
+  add_foreign_key "commune_users", "communes"
+  add_foreign_key "commune_users", "users"
+  add_foreign_key "communes", "users", column: "creator_id"
   add_foreign_key "headings", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "subscribers", "users", column: "subscriber_id"
