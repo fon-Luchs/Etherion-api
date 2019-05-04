@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :index] do
 
-      resources :communes, only: :show
+      resources :communes, only: :show do
+        post 'join', to: 'commune_users#create'
+
+        delete 'leave', to: 'commune_users#destroy'
+      end
 
       resources :subscribings, only: :create
 

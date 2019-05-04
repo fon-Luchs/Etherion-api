@@ -14,7 +14,7 @@ RSpec.describe Commune::CommunePreBuilder do
 
     let!(:join)   { create(:commune_user, user: user, commune: commune) }
 
-    xit { expect(subject.build(record)).to eq join }
+    it { expect(subject.build(record)).to eq join }
   end
 
   describe 'without_joins#pre_build' do
@@ -22,7 +22,7 @@ RSpec.describe Commune::CommunePreBuilder do
 
     let(:record)  { build(:commune, creator: user) }
 
-    xit { expect(subject.build(record)).to eq nil }
+    it { expect(subject.build(record)).to eq nil }
   end
 
   describe 'invalid#pre_build' do
@@ -34,6 +34,6 @@ RSpec.describe Commune::CommunePreBuilder do
 
     before { user.commune = commune }
 
-    xit { expect(subject.build(record)).to eq nil }
+    it { expect(subject.build(record)).to eq nil }
   end
 end
