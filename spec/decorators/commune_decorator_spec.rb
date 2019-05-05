@@ -19,9 +19,20 @@ RSpec.describe CommuneDecorator do
 
   its([:author]) { should eq author }
 
-  its([:rooms])  { should eq [{ id: room.id, name: room.name, users: [] }] }
+  its([:rooms])  { should eq rooms }
 
   its([:users])  { should eq users }
+
+  def rooms
+    commune.rooms.map do |r|
+      {
+        commune: { id: commune.id, name: commune.name },
+        id: r.id,
+        name: r.name,
+        users: []
+      }
+    end
+  end
 
   def author
     {

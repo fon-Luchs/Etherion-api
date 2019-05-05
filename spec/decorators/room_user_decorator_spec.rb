@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe RoomDecorator do
+RSpec.describe RoomUserDecorator do
   let(:user)     { create(:user, nickname: 'Lollita') }
 
   let(:commune)  { create(:commune, creator: user) }
 
   let(:room)     { create(:room, commune: commune) }
 
-  subject        { room.decorate.as_json }
+  let(:room_user) { create(:room_user, room: room, user: user) }
 
-  its([:id])      { should eq room.id }
+  subject         { room_user.decorate.as_json }
 
   its([:name])    { should eq room.name }
 
   its([:commune]) { should eq commune_response }
 
-  its([:users])   { should eq [] }
+  its([:users])   { should eq [{ id: user.id, nickname: user.nickname }] }
 
   def commune_response
     {

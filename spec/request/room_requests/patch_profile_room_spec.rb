@@ -17,6 +17,7 @@ RSpec.describe 'PatchProfileRoom', type: :request do
     {
       'id' => room.id,
       'name' => Room.last.name,
+      'commune' => { 'id' => commune.id, 'name' => commune.name },
       'users' => []
     }
   end

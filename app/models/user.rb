@@ -17,6 +17,10 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  has_many :room_users
+
+  has_many :rooms, through: :room_users
+
   has_many :subscribers, foreign_key: :subscriber_id, class_name: 'Subscriber', dependent: :destroy
 
   has_many :subscribings, foreign_key: :subscribing_id, class_name: 'Subscriber', dependent: :destroy

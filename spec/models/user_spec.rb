@@ -23,6 +23,10 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:subscribings) }
 
+  it { should have_many(:room_users) }
+
+  it { should have_many(:rooms) }
+
   it { should allow_value('example@tst.com').for(:email) }
 
   it { should validate_presence_of(:email) }

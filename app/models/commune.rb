@@ -5,7 +5,7 @@ class Commune < ApplicationRecord
 
   has_many :users, through: :commune_users, source: :user
 
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 
   validates :creator, presence: true
 

@@ -7,6 +7,8 @@ RSpec.describe Commune, type: :model do
 
   it { should have_many(:rooms) }
 
+  it { should have_many(:rooms) }
+
   it { should have_many(:users).through(:commune_users).source(:user) }
 
   it { should validate_presence_of(:creator) }

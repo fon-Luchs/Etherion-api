@@ -15,6 +15,7 @@ RSpec.describe 'GetUserRoom', type: :request do
     {
       'id' => room.id,
       'name' => room.name,
+      'commune' => { 'id' => commune.id, 'name' => commune.name },
       'users' => []
     }
   end

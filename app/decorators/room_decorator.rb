@@ -5,6 +5,10 @@ class RoomDecorator < ApplicationDecorator
     {
       id: object.id,
       name: object.name,
+      commune: {
+        id: room.commune.id,
+        name: room.commune.name
+      },
       users: []
     }
   end

@@ -1,6 +1,10 @@
 class Room < ApplicationRecord
   belongs_to :commune
 
+  has_many :room_users
+
+  has_many :users, through: :room_users
+
   validates :commune, presence: true
 
   validates :name, presence: true

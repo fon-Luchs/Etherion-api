@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_04_191637) do
+ActiveRecord::Schema.define(version: 2019_05_05_123605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2019_05_04_191637) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "room_users", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id", "user_id"], name: "index_room_users_on_room_id_and_user_id", unique: true
+    t.index ["room_id"], name: "index_room_users_on_room_id"
+    t.index ["user_id"], name: "index_room_users_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "commune_id"
     t.string "name"
@@ -123,6 +133,8 @@ ActiveRecord::Schema.define(version: 2019_05_04_191637) do
   add_foreign_key "communes", "users", column: "creator_id"
   add_foreign_key "headings", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "room_users", "rooms"
+  add_foreign_key "room_users", "users"
   add_foreign_key "rooms", "communes"
   add_foreign_key "subscribers", "users", column: "subscriber_id"
   add_foreign_key "subscribers", "users", column: "subscribing_id"

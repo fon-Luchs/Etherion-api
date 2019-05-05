@@ -6,7 +6,13 @@ Rails.application.routes.draw do
 
       resources :communes, only: [:create, :destroy, :update, :show] do
 
-        resources :rooms, only: [:create, :update, :show, :destroy]
+        resources :rooms, only: [:create, :update, :show, :destroy] do
+
+          post 'join', to: 'room_users#create'
+
+          delete 'leave', to: 'room_users#destroy'
+
+        end
 
       end
 
@@ -39,7 +45,13 @@ Rails.application.routes.draw do
 
         delete 'leave', to: 'commune_users#destroy'
 
-        resources :rooms, only: :show
+        resources :rooms, only: :show do
+
+          post 'join', to: 'room_users#create'
+
+          delete 'leave', to: 'room_users#destroy'
+
+        end
       end
 
       resources :subscribings, only: :create
