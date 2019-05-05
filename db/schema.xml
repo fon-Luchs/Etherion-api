@@ -115,9 +115,15 @@
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
-<row name="conversation_id" null="1" autoincrement="0">
+<row name="messangeable_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
 <default>NULL</default><relation table="Conversations" row="id" />
+<relation table="Chanel" row="id" />
+</row>
+<row name="messangeable_type" null="1" autoincrement="0">
+<datatype>varchar</datatype>
+<default>NULL</default><relation table="Conversations" row="id" />
+<relation table="Chanel" row="id" />
 </row>
 <row name="text" null="1" autoincrement="0">
 <datatype>text</datatype>

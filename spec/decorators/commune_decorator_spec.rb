@@ -5,6 +5,8 @@ RSpec.describe CommuneDecorator do
 
   let(:commune)  { create(:commune, creator: user) }
 
+  let!(:room)    { create(:room, commune: commune) }
+
   let(:another)  { create(:user) }
 
   let!(:join)    { create(:commune_user, user: another, commune: commune) }
@@ -17,7 +19,7 @@ RSpec.describe CommuneDecorator do
 
   its([:author]) { should eq author }
 
-  its([:chats])  { should eq [] }
+  its([:rooms])  { should eq [{ id: room.id, name: room.name, users: [] }] }
 
   its([:users])  { should eq users }
 
@@ -29,16 +31,11 @@ RSpec.describe CommuneDecorator do
   end
 
   def users
-    [
+    commune.users.map do |c|
       {
-        id: another.id,
-        nickname: another.nickname
-      },
-
-      {
-        id: user.id,
-        nickname: user.nickname
+        id: c.id,
+        nickname: c.nickname
       }
-    ]
+    end
   end
 end

@@ -20,7 +20,7 @@ RSpec.describe 'PatchCommune', type: :request do
       'id' => commune.id,
       'name' => Commune.last.name,
       'author' => author,
-      'chats' => [],
+      'rooms' => [],
       'users' => [author]
     }
   end

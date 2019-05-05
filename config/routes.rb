@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
     resource :profile, only: [:create, :destroy, :update, :show] do
 
-      resources :communes, only: [:create, :destroy, :update, :show]
+      resources :communes, only: [:create, :destroy, :update, :show] do
+
+        resources :rooms, only: [:create, :update, :show, :destroy]
+
+      end
 
       resources :subscribers, only: :index
 
@@ -34,6 +38,8 @@ Rails.application.routes.draw do
         post 'join', to: 'commune_users#create'
 
         delete 'leave', to: 'commune_users#destroy'
+
+        resources :rooms, only: :show
       end
 
       resources :subscribings, only: :create

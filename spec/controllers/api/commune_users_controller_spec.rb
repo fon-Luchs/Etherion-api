@@ -9,7 +9,9 @@ RSpec.describe Api::CommuneUsersController, type: :controller do
 
   let(:user)    { create(:user, :with_auth_token) }
 
-  let(:commune) { create(:commune, creator:user, id: 1) }
+  let(:another) { create(:user, id: 1) }
+
+  let(:commune) { create(:commune, creator: another, id: 1) }
 
   let(:join)    { create(:commune_user, user: user, commune: commune) }
 
@@ -23,7 +25,7 @@ RSpec.describe Api::CommuneUsersController, type: :controller do
     }
   end
 
-  let(:params)           { { commune_user: { commune: commune, user: user }, commune_id: commune.id } }
+  let(:params)           { { commune_user: { commune: commune, user: user }, commune_id: commune.id, user_id: another.id } }
 
   let(:permitted_params) { permit_params! params, :commune_user }
 
@@ -58,9 +60,8 @@ RSpec.describe Api::CommuneUsersController, type: :controller do
 
     before { merge_headers request_headers }
 
-    before { delete :destroy, params: { commune_id: commune.id }, format: :json }
+    before { delete :destroy, params: { user_id: another.id, commune_id: commune.id }, format: :json }
 
     it     { expect(response).to have_http_status(204) }
   end
-
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_164220) do
+ActiveRecord::Schema.define(version: 2019_05_04_191637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_164220) do
 
   create_table "communes", force: :cascade do |t|
     t.string "name"
-    t.integer "polit_bank"
+    t.integer "polit_bank", default: 0
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 2019_05_02_164220) do
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
     t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "commune_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commune_id"], name: "index_rooms_on_commune_id"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -115,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_164220) do
   add_foreign_key "communes", "users", column: "creator_id"
   add_foreign_key "headings", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "rooms", "communes"
   add_foreign_key "subscribers", "users", column: "subscriber_id"
   add_foreign_key "subscribers", "users", column: "subscribing_id"
 end

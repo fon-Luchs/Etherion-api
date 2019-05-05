@@ -5,6 +5,8 @@ class Commune < ApplicationRecord
 
   has_many :users, through: :commune_users, source: :user
 
+  has_many :rooms
+
   validates :creator, presence: true
 
   validates :name, presence: true

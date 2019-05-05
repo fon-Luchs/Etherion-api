@@ -28,7 +28,7 @@ RSpec.describe 'PostCommuneUserResource', type: :request do
 
   before { build(:commune_user, resource_params) }
 
-  let(:commune_user) { CommuneUSer.last }
+  let(:commune_user) { CommuneUser.last }
 
   context do
     before { post '/api/users/1/communes/1/join', params: params.to_json , headers: headers }

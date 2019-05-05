@@ -18,7 +18,7 @@ RSpec.describe 'PostCommune', type: :request do
       'id' => commune.id,
       'name' => commune.name,
       'author' => author,
-      'chats' => [],
+      'rooms' => [],
       'users' => [author]
     }
   end
