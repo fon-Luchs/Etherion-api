@@ -27,6 +27,10 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:rooms) }
 
+  it { should have_many(:active_conversations) }
+
+  it { should have_many(:pasive_conversations) }
+
   it { should allow_value('example@tst.com').for(:email) }
 
   it { should validate_presence_of(:email) }

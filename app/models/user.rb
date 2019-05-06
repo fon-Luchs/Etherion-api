@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
   has_many :subscribings, foreign_key: :subscribing_id, class_name: 'Subscriber', dependent: :destroy
 
+  has_many :active_conversations, foreign_key: :sender_id, class_name: 'Conversation'
+
+  has_many :pasive_conversations, foreign_key: :recipient_id, class_name: 'Conversation'
+
   validates :login, length: { in: 3..15 }
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }

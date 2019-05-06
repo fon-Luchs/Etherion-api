@@ -35,6 +35,8 @@ Rails.application.routes.draw do
         end
 
       end
+      
+      resources :conversations, only: [:show, :index]
 
     end
 
@@ -53,6 +55,8 @@ Rails.application.routes.draw do
 
         end
       end
+
+      resources :conversations, only: [:create, :show]
 
       resources :subscribings, only: :create
 
