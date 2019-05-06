@@ -16,5 +16,4 @@ class RoomUserDecorator < ApplicationDecorator
       users: room.users.decorate(context: { user_index: true }).as_json
     }
   end
-
 end

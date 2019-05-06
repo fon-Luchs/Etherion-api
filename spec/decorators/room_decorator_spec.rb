@@ -7,15 +7,27 @@ RSpec.describe RoomDecorator do
 
   let(:room)     { create(:room, commune: commune) }
 
-  subject        { room.decorate.as_json }
+  describe '#room_index' do
+    subject { room.decorate(context: { room_index: true }).as_json }
 
-  its([:id])      { should eq room.id }
+    its([:id])       { should eq room.id }
 
-  its([:name])    { should eq room.name }
+    its([:name])     { should eq room.name }
 
-  its([:commune]) { should eq commune_response }
+    its([:messages]) { should eq [] }
+  end
 
-  its([:users])   { should eq [] }
+  describe '#room_show' do
+    subject { room.decorate(context: { room_show: true }).as_json }
+
+    its([:id])       { should eq room.id }
+
+    its([:name])     { should eq room.name }
+
+    its([:messages]) { should eq [] }
+
+    its([:commune])  { should eq commune_response }
+  end
 
   def commune_response
     {

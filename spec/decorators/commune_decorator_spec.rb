@@ -26,10 +26,9 @@ RSpec.describe CommuneDecorator do
   def rooms
     commune.rooms.map do |r|
       {
-        commune: { id: commune.id, name: commune.name },
         id: r.id,
         name: r.name,
-        users: []
+        messages: []
       }
     end
   end

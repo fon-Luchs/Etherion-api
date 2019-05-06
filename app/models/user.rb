@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
   has_many :pasive_conversations, foreign_key: :recipient_id, class_name: 'Conversation'
 
+  has_many :messages
+
   validates :login, length: { in: 3..15 }
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }

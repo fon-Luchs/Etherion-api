@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
         resources :rooms, only: [:create, :update, :show, :destroy] do
 
+          resources :messages, only: [:create, :update]
+
           post 'join', to: 'room_users#create'
 
           delete 'leave', to: 'room_users#destroy'
@@ -35,8 +37,12 @@ Rails.application.routes.draw do
         end
 
       end
-      
-      resources :conversations, only: [:show, :index]
+
+      resources :conversations, only: [:show, :index] do
+
+        resources :messages, only: [:create, :update]
+
+      end
 
     end
 

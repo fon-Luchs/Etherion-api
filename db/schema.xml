@@ -53,7 +53,7 @@
 		<type label="SQL Variant" length="1" sql="sql_variant" quote="" bytes="" note="Stores any datatype except text, ntext, image, timestamp"/>
 		<type label="Uniqueidentifier" length="1" sql="uniqueidentifier" quote="" bytes="16" note="GUID"/>
 	</group>
-</datatypes><table x="311" y="332" name="Users">
+</datatypes><table x="311" y="332" name="Users  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -76,36 +76,36 @@
 <part>id</part>
 </key>
 </table>
-<table x="617" y="20" name="Conversations">
+<table x="617" y="20" name="Conversations ✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="sender_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="recipient_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="908" y="120" name="Ads">
+<table x="908" y="120" name="Ads  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="text" null="1" autoincrement="0">
 <datatype>text</datatype>
 <default>NULL</default></row>
 <row name="category_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Headings" row="id" />
+<default>NULL</default><relation table="Headings  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -117,13 +117,13 @@
 <default>NULL</default></row>
 <row name="messangeable_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Conversations" row="id" />
-<relation table="Chanel" row="id" />
+<default>NULL</default><relation table="Conversations ✓ " row="id" />
+<relation table="Channel ✓ " row="id" />
 </row>
 <row name="messangeable_type" null="1" autoincrement="0">
-<datatype>varchar</datatype>
-<default>NULL</default><relation table="Conversations" row="id" />
-<relation table="Chanel" row="id" />
+<datatype>tinyint</datatype>
+<default>NULL</default><relation table="Conversations ✓ " row="id" />
+<relation table="Channel ✓ " row="id" />
 </row>
 <row name="text" null="1" autoincrement="0">
 <datatype>text</datatype>
@@ -132,17 +132,17 @@
 <part>id</part>
 </key>
 </table>
-<table x="1208" y="467" name="Comments">
+<table x="1208" y="467" name="Comments  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="publication_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Ads" row="id" />
+<default>NULL</default><relation table="Ads  	✓ " row="id" />
 </row>
 <row name="text" null="1" autoincrement="0">
 <datatype>varchar</datatype>
@@ -154,23 +154,23 @@
 <part>id</part>
 </key>
 </table>
-<table x="28" y="222" name="Subscribers">
+<table x="28" y="222" name="Subscribers  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="subscriber_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="subscribing_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="743" y="512" name="Headings">
+<table x="743" y="512" name="Headings  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
@@ -179,20 +179,20 @@
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1507" y="146" name="Likes">
+<table x="1507" y="146" name="Likes  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="likeable_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Ads" row="id" />
-<relation table="Comments" row="id" />
+<default>NULL</default><relation table="Ads  	✓ " row="id" />
+<relation table="Comments  	✓ " row="id" />
 </row>
 <row name="likeable_type" null="1" autoincrement="0">
 <datatype>varchar</datatype>
@@ -202,19 +202,19 @@
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="85" y="537" name="Communes">
+<table x="85" y="537" name="Communes  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="creator_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="name" null="1" autoincrement="0">
 <datatype>varchar</datatype>
@@ -226,29 +226,29 @@
 <part>id</part>
 </key>
 </table>
-<table x="149" y="743" name="commune_users">
+<table x="149" y="743" name="commune_users  	✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="commune_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Communes" row="id" />
+<default>NULL</default><relation table="Communes  	✓ " row="id" />
 </row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="859" y="704" name="Chanel">
+<table x="859" y="704" name="Channel ✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="commune_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Communes" row="id" />
+<default>NULL</default><relation table="Communes  	✓ " row="id" />
 </row>
 <row name="name" null="1" autoincrement="0">
 <datatype>varchar</datatype>
@@ -257,39 +257,39 @@
 <part>id</part>
 </key>
 </table>
-<table x="1476" y="671" name="chanel_users">
+<table x="1513" y="668" name="chanel_users ✓ ">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="chanel_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Chanel" row="id" />
+<default>NULL</default><relation table="Channel ✓ " row="id" />
 </row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="500" y="735" name="Roles">
+<table x="520" y="740" name="Roles">
 <row name="id" null="1" autoincrement="1">
 <datatype>tinyint</datatype>
 <default>NULL</default></row>
 <row name="roleable_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Communes" row="id" />
-<relation table="Chanel" row="id" />
-<relation table="Chanel" row="id" />
+<default>NULL</default><relation table="Communes  	✓ " row="id" />
+<relation table="Channel ✓ " row="id" />
+<relation table="Channel ✓ " row="id" />
 </row>
 <row name="roleable_type" null="1" autoincrement="0">
 <datatype>varchar</datatype>
-<default>NULL</default><relation table="Communes" row="id" />
+<default>NULL</default><relation table="Communes  	✓ " row="id" />
 </row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>tinyint</datatype>
-<default>NULL</default><relation table="Users" row="id" />
+<default>NULL</default><relation table="Users  	✓ " row="id" />
 </row>
 <row name="name" null="1" autoincrement="0">
 <datatype>varchar</datatype>
