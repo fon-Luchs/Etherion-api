@@ -27,10 +27,12 @@ class LikeObserver < ActiveRecord::Observer
 
   def user_increment!
     @user.increment!(:polit_power, @coef)
+    @user.touch
   end
 
   def likeable_decrement!
     @likeable.decrement!(:rate, @coef)
+    @user.touch
   end
 
   def user_decrement!

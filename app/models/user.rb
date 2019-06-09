@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
 
-  validates :password, length: { minimum: 8 }
+  validates :password, length: { minimum: 8 }, allow_nil: true
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 

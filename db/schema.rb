@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_074009) do
+ActiveRecord::Schema.define(version: 2019_06_09_130101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_074009) do
     t.datetime "updated_at", null: false
     t.string "password"
     t.integer "polit_power", default: 0
+    t.boolean "moderator", default: false
     t.index ["login"], name: "index_users_on_login"
   end
 
